@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jelam Raval | Python &amp; Django Developer</title>
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+</head>
+<style>
+
+:root {
+  --navy-950: #0a1f44;
+  --blue-700: #1746a2;
+  --blue-600: #2456c9;
+  --blue-500: #2e6be6;
+  --blue-100: #eaf1ff;
+  --blue-50:  #f5f8ff;
+  --gray-600: #5b6b85;
+  --white: #ffffff;
+
+  --font-display: "Sora", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  --radius-lg: 20px;
+  --radius-md: 14px;
+  --radius-sm: 8px;
+
+  --shadow-soft: 0 10px 30px rgba(10, 31, 68, 0.08);
+  --shadow-hover: 0 18px 40px rgba(23, 70, 162, 0.18);
+
+  --transition: all 0.3s ease;
+}
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--navy-950);
+  background-color: var(--blue-50);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  color: var(--navy-950);
+}
+
+
+section {
+  padding: 100px 8%;
+}
+
+.section-heading {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.section-heading h2 {
+  font-size: 2.1rem;
+  font-weight: 700;
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--blue-600);
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+}
+
+
+.btn {
+  display: inline-block;
+  padding: 14px 30px;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: var(--transition);
+  border: 2px solid transparent;
+}
+
+.btn-primary {
+  background-color: var(--blue-600);
+  color: var(--white);
+  box-shadow: 0 8px 20px rgba(36, 86, 201, 0.3);
+}
+
+.btn-primary:hover {
+  background-color: var(--blue-700);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(36, 86, 201, 0.4);
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: var(--blue-700);
+  border-color: var(--blue-600);
+}
+
+.btn-outline:hover {
+  background-color: var(--blue-600);
+  color: var(--white);
+  transform: translateY(-3px);
+}
+
+
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 15px rgba(10, 31, 68, 0.06);
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 8%;
+  position: relative;
+}
+
+.logo {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--navy-950);
+}
+
+.logo .dot {
+  color: var(--blue-500);
+}
+
+.nav-links {
+  display: flex;
+  gap: 32px;
+}
+
+.nav-links a {
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: var(--navy-950);
+  padding: 6px 4px;
+  position: relative;
+  transition: var(--transition);
+}
+
+
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0%;
+  height: 2px;
+  background-color: var(--blue-500);
+  transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+.nav-links a:hover {
+  color: var(--blue-600);
+}
+
+
+.nav-toggle {
+  display: none;
+}
+
+.nav-burger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  z-index: 20;
+}
+
+.nav-burger span {
+  width: 26px;
+  height: 3px;
+  background-color: var(--navy-950);
+  border-radius: 2px;
+}
+
+
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 50px;
+  padding-top: 80px;
+  padding-bottom: 80px;
+  background: linear-gradient(180deg, var(--blue-50) 0%, var(--blue-100) 100%);
+}
+
+.hero-text {
+  flex: 1;
+  max-width: 560px;
+}
+
+.hero-text h1 {
+  font-size: 3rem;
+  font-weight: 800;
+  line-height: 1.15;
+  margin-bottom: 14px;
+}
+
+.highlight {
+  color: var(--blue-600);
+}
+
+.hero-role {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--blue-700);
+  margin-bottom: 18px;
+}
+
+.hero-role .sep {
+  color: var(--gray-600);
+  margin: 0 6px;
+}
+
+.hero-desc {
+  color: var(--gray-600);
+  font-size: 1.02rem;
+  margin-bottom: 32px;
+  max-width: 480px;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+
+.hero-image {
+  flex: 1;
+  max-width: 420px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.image-frame {
+  width: 100%;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-soft);
+  border: 6px solid var(--white);
+}
+
+.image-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: var(--transition);
+}
+
+.image-frame:hover img {
+  transform: scale(1.04);
+}
+
+
+.code-badge {
+  position: absolute;
+  bottom: -20px;
+  left: -30px;
+  background-color: var(--navy-950);
+  color: #9fd0ff;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  padding: 14px 18px;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-hover);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.code-line {
+  white-space: pre;
+}
+
+
+.about {
+  background-color: var(--white);
+}
+
+.about-content {
+  max-width: 760px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.about-content p {
+  color: var(--gray-600);
+  font-size: 1.05rem;
+}
+
+.about-content strong {
+  color: var(--navy-950);
+}
+
+.about-secondary {
+  margin-top: 18px;
+  color: var(--gray-600);
+  font-size: 1.05rem;
+}
+
+
+.skills {
+  background-color: var(--blue-100);
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.skill-card {
+  background-color: var(--white);
+  border-radius: var(--radius-md);
+  padding: 26px 24px;
+  text-align: left;
+  box-shadow: var(--shadow-soft);
+  transition: var(--transition);
+  border: 1px solid transparent;
+}
+
+.skill-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-hover);
+  border-color: var(--blue-500);
+}
+
+.skill-category {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--navy-950);
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--blue-100);
+}
+
+.skill-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.skill-tag {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  color: var(--blue-700);
+  font-size: 0.8rem;
+  background-color: var(--blue-100);
+  padding: 6px 12px;
+  border-radius: 20px;
+  transition: var(--transition);
+}
+
+.skill-tag:hover {
+  background-color: var(--blue-600);
+  color: var(--white);
+}
+
+
+.experience {
+  background-color: var(--white);
+}
+
+.experience-list {
+  max-width: 700px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.experience-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background-color: var(--blue-50);
+  border-radius: var(--radius-md);
+  padding: 18px 24px;
+  box-shadow: var(--shadow-soft);
+  transition: var(--transition);
+}
+
+.experience-item:hover {
+  transform: translateX(8px);
+  box-shadow: var(--shadow-hover);
+  background-color: var(--blue-100);
+}
+
+.exp-dot {
+  flex-shrink: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--blue-500);
+}
+
+.experience-item p {
+  font-weight: 500;
+  color: var(--navy-950);
+  font-size: 0.98rem;
+}
+
+
+.projects {
+  background-color: var(--white);
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.project-card {
+  background-color: var(--blue-50);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-soft);
+  transition: var(--transition);
+}
+
+.project-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-hover);
+}
+
+.project-top {
+  background: linear-gradient(120deg, var(--blue-700), var(--blue-500));
+  color: var(--white);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  padding: 14px 22px;
+  letter-spacing: 0.5px;
+}
+
+.project-body {
+  padding: 24px;
+}
+
+.project-body h3 {
+  font-size: 1.15rem;
+  margin-bottom: 10px;
+}
+
+.project-body p {
+  color: var(--gray-600);
+  font-size: 0.95rem;
+  margin-bottom: 18px;
+}
+
+.tech-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tech-tags span {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  background-color: var(--blue-100);
+  color: var(--blue-700);
+  padding: 5px 12px;
+  border-radius: 20px;
+}
+
+
+.education {
+  background-color: var(--blue-100);
+}
+
+.education-content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.edu-card,
+.achievements {
+  flex: 1;
+  min-width: 280px;
+  background-color: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 30px;
+  box-shadow: var(--shadow-soft);
+  transition: var(--transition);
+}
+
+.edu-card:hover,
+.achievements:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-hover);
+}
+
+.edu-card h3 {
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+}
+
+.edu-sub {
+  color: var(--gray-600);
+  font-size: 0.95rem;
+}
+
+.achievements ul li {
+  position: relative;
+  padding-left: 22px;
+  margin-bottom: 12px;
+  color: var(--navy-950);
+  font-size: 0.95rem;
+}
+
+.achievements ul li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--blue-500);
+  font-weight: 700;
+}
+
+
+.contact {
+  background-color: var(--white);
+  text-align: center;
+}
+
+.contact-desc {
+  color: var(--gray-600);
+  margin-bottom: 30px;
+}
+
+.contact-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+
+.footer {
+  background-color: var(--navy-950);
+  color: #b8c6e6;
+  text-align: center;
+  padding: 26px 8%;
+  font-size: 0.9rem;
+}
+
+
+@media (max-width: 900px) {
+  .hero {
+    flex-direction: column-reverse;
+    text-align: center;
+    padding-top: 50px;
+  }
+
+  .hero-text {
+    max-width: 100%;
+  }
+
+  .hero-desc {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-buttons {
+    justify-content: center;
+  }
+
+  .hero-image {
+    max-width: 320px;
+  }
+
+  .code-badge {
+    left: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  section {
+    padding: 70px 6%;
+  }
+
+  .nav-burger {
+    display: flex;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: var(--white);
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease;
+    box-shadow: 0 10px 20px rgba(10, 31, 68, 0.08);
+  }
+
+  .nav-links a {
+    padding: 16px 0;
+    width: 100%;
+    text-align: center;
+  }
+
+  .nav-toggle:checked ~ .nav-links {
+    max-height: 400px;
+  }
+
+  .hero-text h1 {
+    font-size: 2.3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-buttons,
+  .contact-buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .btn {
+    text-align: center;
+    width: 100%;
+  }
+
+  .code-badge {
+    font-size: 0.68rem;
+    padding: 10px 14px;
+  }
+}
+</style>
+<body>
+
+
+  <header class="navbar">
+    <div class="nav-inner">
+      <a href="#home" class="logo">Jelam<span class="dot">.</span>Raval</a>
+
+
+      <input type="checkbox" id="nav-toggle" class="nav-toggle">
+      <label for="nav-toggle" class="nav-burger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </label>
+
+      <nav class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#education">Education</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+
+  <section id="home" class="hero">
+    <div class="hero-text">
+      <p class="eyebrow">&lt;hello world/&gt;</p>
+      <h1>Hi, I'm <span class="highlight">Jelam Raval</span></h1>
+      <p class="hero-role">Python &amp; Django Developer <span class="sep">|</span> Full Stack Web Development Enthusiast</p>
+      <p class="hero-desc">
+        Diploma Computer Engineering student building real-world projects at the
+        intersection of web development, AI, and IoT.
+      </p>
+      <div class="hero-buttons">
+        <a href="#projects" class="btn btn-primary">View Projects</a>
+        <a href="#contact" class="btn btn-outline">Get In Touch</a>
+      </div>
+    </div>
+
+    <div class="hero-image">
+      <div class="image-frame">
+        <img src="me.jpeg" alt="Developer workspace representing Jelam Raval's coding journey">
+      </div>
+      <div class="code-badge">
+        <span class="code-line">def build():</span>
+        <span class="code-line">&nbsp;&nbsp;return "innovation"</span>
+      </div>
+    </div>
+  </section>
+
+
+  <section id="about" class="about">
+    <div class="section-heading">
+      <p class="eyebrow">01 / About Me</p>
+      <h2>A little about my journey</h2>
+    </div>
+
+    <div class="about-content">
+      <p>
+        I am a Diploma Computer Engineering student at
+        <strong>Government Polytechnic Jamnagar (GTU)</strong>. I am passionate about
+        Python, Django, Web Development, Artificial Intelligence, IoT, and creating
+        real-world projects. I enjoy learning modern technologies and continuously
+        improving my programming skills.
+      </p>
+      <p class="about-secondary">
+        Beyond code, I'm the creator of a devotional content platform that shares
+        spiritual and inspirational content &mdash; combining technology, creativity,
+        consistency, and community engagement. I believe in judging code by what it
+        creates, not by how many files it has.
+      </p>
+    </div>
+  </section>
+
+
+  <section id="skills" class="skills">
+    <div class="section-heading">
+      <p class="eyebrow">02 / Skills</p>
+      <h2>Technologies I work with</h2>
+    </div>
+
+    <div class="skills-grid">
+
+      <div class="skill-card">
+        <h3 class="skill-category">Languages</h3>
+        <div class="skill-pills">
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">Java</span>
+          <span class="skill-tag">C</span>
+          <span class="skill-tag">JavaScript</span>
+          <span class="skill-tag">TypeScript</span>
+          <span class="skill-tag">Bash</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <h3 class="skill-category">Frontend</h3>
+        <div class="skill-pills">
+          <span class="skill-tag">HTML5</span>
+          <span class="skill-tag">CSS3</span>
+          <span class="skill-tag">Bootstrap</span>
+          <span class="skill-tag">Chart.js</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <h3 class="skill-category">Backend</h3>
+        <div class="skill-pills">
+          <span class="skill-tag">Django</span>
+          <span class="skill-tag">Node.js</span>
+          <span class="skill-tag">Express.js</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <h3 class="skill-category">Databases</h3>
+        <div class="skill-pills">
+          <span class="skill-tag">MySQL</span>
+          <span class="skill-tag">MongoDB</span>
+          <span class="skill-tag">Oracle</span>
+          <span class="skill-tag">Cassandra</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <h3 class="skill-category">AI, ML &amp; Data</h3>
+        <div class="skill-pills">
+          <span class="skill-tag">NumPy</span>
+          <span class="skill-tag">Pandas</span>
+          <span class="skill-tag">scikit-learn</span>
+          <span class="skill-tag">Matplotlib</span>
+          <span class="skill-tag">Power BI</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <h3 class="skill-category">Cloud &amp; Tools</h3>
+        <div class="skill-pills">
+          <span class="skill-tag">Google Cloud</span>
+          <span class="skill-tag">Vercel</span>
+          <span class="skill-tag">Git &amp; GitHub</span>
+          <span class="skill-tag">Figma</span>
+          <span class="skill-tag">Canva</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <section id="experience" class="experience">
+    <div class="section-heading">
+      <p class="eyebrow">03 / Experience</p>
+      <h2>Internships &amp; programs</h2>
+    </div>
+
+    <div class="experience-list">
+      <div class="experience-item">
+        <span class="exp-dot"></span>
+        <p>Python with Django Internship Certificate</p>
+      </div>
+      <div class="experience-item">
+        <span class="exp-dot"></span>
+        <p>Tata GenAI Powered Data Analytics</p>
+      </div>
+      <div class="experience-item">
+        <span class="exp-dot"></span>
+        <p>Tata Data Visualisation</p>
+      </div>
+      <div class="experience-item">
+        <span class="exp-dot"></span>
+        <p>Deloitte Cyber</p>
+      </div>
+      <div class="experience-item">
+        <span class="exp-dot"></span>
+        <p>Machine Learning with AI (NSDC)</p>
+      </div>
+    </div>
+  </section>
+
+
+  <section id="projects" class="projects">
+    <div class="section-heading">
+      <p class="eyebrow">04 / Projects</p>
+      <h2>Things I've built</h2>
+    </div>
+
+    <div class="projects-grid">
+
+      <article class="project-card">
+        <div class="project-top">AgroSphere</div>
+        <div class="project-body">
+          <h3>AgroSphere – Smart Agriculture Ecosystem</h3>
+          <p>A Django-based platform that helps farmers with crop recommendations, weather updates, government schemes, and AI-powered assistance.</p>
+          <div class="tech-tags">
+            <span>Django</span><span>Python</span><span>AI</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="project-card">
+        <div class="project-top">Book Store</div>
+        <div class="project-body">
+          <h3>Raval Book Store</h3>
+          <p>An online bookstore developed using Django with book management and shopping features.</p>
+          <div class="tech-tags">
+            <span>Django</span><span>MySQL</span><span>Python</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="project-card">
+        <div class="project-top">Finance</div>
+        <div class="project-body">
+          <h3>Expense Tracker</h3>
+          <p>A Python application that manages income and expenses and generates financial summaries.</p>
+          <div class="tech-tags">
+            <span>Python</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="project-card">
+        <div class="project-top">Quiz App</div>
+        <div class="project-body">
+          <h3>QuizFusion</h3>
+          <p>An interactive online quiz application with multiple categories and score tracking.</p>
+          <div class="tech-tags">
+            <span>Python</span><span>Django</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="project-card">
+      <div class="project-top">Online Gaming</div>
+      <div class="project-body">
+        <h3>J-Play</h3>
+        <p>An online gaming platform that reimagines classic games with a modern interface, responsive gameplay, and exciting user experience.</p>
+        <div class="tech-tags">
+            <span>HTML</span>
+            <span>CSS</span>
+            <span>JavaScript</span>
+          </div>
+        </div>
+       </article>
+
+      <article class="project-card">
+        <div class="project-top">Task Manager</div>
+        <div class="project-body">
+        <h3>TaskFlow</h3>
+        <p>A lightweight productivity application that allows users to create, update, manage, and delete tasks directly in the browser using Local Storage.</p>
+        <div class="tech-tags">
+            <span>HTML</span>
+            <span>CSS</span>
+            <span>JavaScript</span>
+            <span>Local Storage</span>
+        </div>
+        </div>
+     </article>
+
+
+    </div>
+  </section>
+
+
+  <section id="education" class="education">
+    <div class="section-heading">
+      <p class="eyebrow">05 / Education</p>
+      <h2>Academic background &amp; achievements</h2>
+    </div>
+
+    <div class="education-content">
+      <div class="edu-card">
+        <h3>Diploma in Computer Engineering</h3>
+        <p class="edu-sub">Government Polytechnic Jamnagar</p>
+        <p class="edu-sub">Affiliated to GTU</p>
+      </div>
+
+      <div class="achievements">
+        <ul>
+          <li>NSDC Certified in Machine Learning with AI</li>
+          <li>Certified in Data Science &amp; Data Analytics</li>
+          <li>Certified in Generative AI &amp; Critical Thinking in AI</li>
+          <li>Certified in Cybersecurity Awareness &amp; Digital Forensics</li>
+          <li>Certified in Project Management &amp; Leadership</li>
+          <li>Certified in Git &amp; GitHub, English Communication &amp; Professional Skills</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+
+  <section id="contact" class="contact">
+    <div class="section-heading">
+      <p class="eyebrow">06 / Contact</p>
+      <h2>Let's build something together</h2>
+    </div>
+
+    <p class="contact-desc">
+      Feel free to reach out through GitHub or connect with me on LinkedIn.
+    </p>
+
+    <div class="contact-buttons">
+      <a href="https://github.com/Jelamrraval" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+        GitHub
+      </a>
+      <a href="https://linkedin.com/in/JelamRRaval" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+        LinkedIn
+      </a>
+      <a href="https://instagram.com/DivineDiary.JR" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+        Instagram
+      </a>
+      <a href="https://youtube.com/@DivineDiary.JR_YT" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+        YouTube
+      </a>
+    </div>
+  </section>
+
+
+  <footer class="footer">
+    <p>&copy; 2026 Jelam Raval.</p>
+  </footer>
+
+</body>
+</html>
